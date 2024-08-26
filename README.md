@@ -1,8 +1,27 @@
-# Data Science Project Boilerplate
+# SISTEMA DE AGRUPACION DE CASAS  
 
-This boilerplate is designed to kickstart data science projects by providing a basic setup for database connections, data processing, and machine learning model development. It includes a structured folder organization for your datasets and a set of pre-defined Python packages necessary for most data science tasks.
+Queremos ser capaces de clasificar casas según su la región en la que se encuentren y del ingreso medio. Para ello, utilizaremos el famoso conjunto de datos California Housing. Se construyó utilizando los datos del censo de California de 1990. Contiene una fila por grupo de bloques censales. Un grupo de bloques es la unidad geográfica más pequeña para la que se publican datos del censo de USA.
 
-## Structure
+Paso 1: Carga del conjunto de datos
+
+Paso 2: Construimos un K-Means
+Clasificamos los datos en 6 clusters utilizando, para ello, el modelo K-Means. 
+Almacenamos el cluster al que pertenece cada casa como una columna nueva del dataset. 
+Observamos qué formato y valores tiene y actúamos en consecuencia. 
+Grafícamos en un diagrama de puntos y describimos.
+
+Paso 3: Predice con el conjunto de test
+Utilizamos el modelo entrenado con el conjunto test y añadimos los puntos al gráfico anterior para confirmar que la predicción es satisfactoria o no.
+
+Paso 4: Entrenamos un modelo de clasificación supervisada
+Una vez que el K-Means nos ha devuelto una categorización (agrupación) de los puntos para los conjuntos de entrenamiento y prueba, estudiamois qué modelo podría ser más útil y lo entrénamos. 
+Obtenemos las estadísticas y describimos.
+
+Este flujo es muy común cuando contamos con datos no etiquetados: utilizar un modelo de aprendizaje no supervisado para etiquetarlos de forma automática y a continuación, un modelo de aprendizaje supervisado.
+
+Paso 5: Guardamos los modelos
+
+# ESTRUCTURA
 
 The project is organized as follows:
 
@@ -33,22 +52,6 @@ Navigate to the project directory and install the required Python packages:
 pip install -r requirements.txt
 ```
 
-**Create a database (if needed)**
-
-Create a new database within the Postgres engine by customizing and executing the following command: `$ createdb -h localhost -U <username> <db_name>`
-Connect to the Postgres engine to use your database, manipulate tables and data: `$ psql -h localhost -U <username> <db_name>`
-NOTE: Remember to check the ./.env file information to get the username and db_name.
-
-Once you are inside PSQL you will be able to create tables, make queries, insert, update or delete data and much more!
-
-**Environment Variables**
-
-Create a .env file in the project root directory to store your environment variables, such as your database connection string:
-
-```makefile
-DATABASE_URL="your_database_connection_url_here"
-```
-
 ## Running the Application
 
 To run the application, execute the app.py script from the root of the project directory:
@@ -56,31 +59,6 @@ To run the application, execute the app.py script from the root of the project d
 ```bash
 python app.py
 ```
-
-## Adding Models
-
-To add SQLAlchemy model classes, create new Python script files inside the models/ directory. These classes should be defined according to your database schema.
-
-Example model definition (`models/example_model.py`):
-
-```py
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    __tablename__ = 'example_table'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-```
-
-## Working with Data
-
-You can place your raw datasets in the data/raw directory, intermediate datasets in data/interim, and the processed datasets ready for analysis in data/processed.
-
-To process data, you can modify the app.py script to include your data processing steps, utilizing pandas for data manipulation and analysis.
 
 ## Contributors
 
